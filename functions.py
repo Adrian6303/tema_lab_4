@@ -1,12 +1,54 @@
+def validate_list(elem):
+    if validate_ap(elem) == False:
+        return False
+    if validate_tip(elem) == False:
+        return False
+    if validate_suma(elem) == False:
+        return False
+    return True
+
+
+def validate_ap(el):
+    el_ap = int(el.split(".")[0])
+    if el_ap <= 0:
+        return False
+    else:
+        return True
+
+
+def validate_tip(el):
+    lista_tipuri = ["Apa", "Canal", "Incalzire", "Gaz", "Altele"]
+    el_tip = str(el.split(".")[1])
+    el_tip = str(el_tip.split("=")[0])
+    ok = 0
+    for el in lista_tipuri:
+        if el == el_tip:
+            ok = 1
+            break
+    if ok == 0:
+        return False
+    return True
+
+
+def validate_suma(el):
+    el_suma = int(el.split("=")[1])
+    if el_suma < 0:
+        return False
+    return True
+
+
 def read_list(current_list):
-    # Lista sa fie data sub forma: 1-Apa=200, 2-Canal=500, 3-Gaz=700
+    # Lista sa fie data sub forma: 1.Apa=200, 2.Canal=500, 3.Gaz=700
     # list_as_string = input("Introduceti lista sub formatul cerut: ")
     # the_list = list_as_string.split()
     # return the_list
     n = int(input("Cate cheltuieli se citesc? "))
     for i in range(n):
-        cheltuiala = input("Introduceti cheltuiala sub forma NrAp-TipCheltiiala=Suma : ")
-        current_list.append(cheltuiala)
+        cheltuiala = input("Introduceti cheltuiala sub forma NrAp.TipCheltiiala=Suma : ")
+        if validate_list(cheltuiala) == True:
+            current_list.append(cheltuiala)
+        else:
+            print("Cheltuiala Invalida!")
 
 
 def populate_list(the_list):
@@ -17,19 +59,19 @@ def populate_list(the_list):
     :return: -; lista data se modifica prin adaugarea cheltuielilor date
     :rtype:
     """
-    the_list.append("1-Apa=200")
-    the_list.append("1-Gaz=300")
-    the_list.append("2-Gaz=500")
-    the_list.append("4-Canal=100")
-    the_list.append("1-Canal=100")
-    the_list.append("69-Apa=250")
-    the_list.append("250-Apa=250")
+    the_list.append("1.Apa=200")
+    the_list.append("1.Gaz=300")
+    the_list.append("2.Gaz=500")
+    the_list.append("4.Canal=100")
+    the_list.append("1.Canal=100")
+    the_list.append("69.Apa=250")
+    the_list.append("250.Apa=250")
 
 
 def edit_list(current_list):
     n = int(input("Cate cheltuieli doresti sa modifici? "))
     for i in range(n):
-        el_edit = str(input("Introduce cheltuiala ce trebuie modificata sub forma NrAp-TipCheltuiala : "))
+        el_edit = str(input("Introduce cheltuiala ce trebuie modificata sub forma NrAp.TipCheltuiala : "))
         cnt = 0  # contor pozitie, el element lista
         ok = 0  # verifica existenta cheltuielii
         for el in current_list:
@@ -57,7 +99,7 @@ def delete_cheltuieli_consec(current_list):
     nr_stop = int(input("Introduce numarul apartamentului pana la care se sterge: "))
     for i in range(len(current_list)):
         for el in current_list:
-            el_nr = int(el.split("-")[0])
+            el_nr = int(el.split(".")[0])
             if el_nr >= nr_start and el_nr <= nr_stop:
                 current_list.remove(el)
                 break
@@ -67,7 +109,7 @@ def delete_cheltuieli_tip(current_list):
     tipul = str(input("Introduce tipul cheltuielii: "))
     for i in range(len(current_list)):
         for el in current_list:
-            el_tip = str(el.split("-")[1])
+            el_tip = str(el.split(".")[1])
             el_tip = str(el_tip.split("=")[0])
             if el_tip == tipul:
                 current_list.remove(el)
@@ -82,7 +124,7 @@ def tiparire_sume_mai_mari(current_list, suma):
         ap += 1
         el_suma = 0
         for el in current_list:
-            if ap == int(el.split("-")[0]):
+            if ap == int(el.split(".")[0]):
                 el_suma += int(el.split("=")[1])
                 cnt += 1
         if el_suma >= suma:
@@ -93,10 +135,10 @@ def tiparire_sume_mai_mari(current_list, suma):
 def tiparire_cheltuieeli_tip(current_list, tipul):
     lista = []
     for el in current_list:
-        el_tip = str(el.split("-")[1])
+        el_tip = str(el.split(".")[1])
         el_tip = str(el_tip.split("=")[0])
         if tipul == el_tip:
-            el_cheltuiala = str(el.split("-")[0])
+            el_cheltuiala = str(el.split(".")[0])
             el_cheltuiala = "Apartamentul " + el_cheltuiala + " suma " + str(el.split("=")[1])
             lista.append(el_cheltuiala)
     return lista
@@ -106,7 +148,7 @@ def raport_sum_tip(current_list, tipul):
     lista = []
     suma = 0
     for el in current_list:
-        el_tip = str(el.split("-")[1])
+        el_tip = str(el.split(".")[1])
         el_tip = str(el_tip.split("=")[0])
         if tipul == el_tip:
             el_suma = int(el.split("=")[1])
@@ -117,7 +159,7 @@ def raport_sum_tip(current_list, tipul):
 def filter_tip(current_list, tipul):
     lista = []
     for el in current_list:
-        el_tip = str(el.split("-")[1])
+        el_tip = str(el.split(".")[1])
         el_tip = str(el_tip.split("=")[0])
         if el_tip != tipul:
             lista.append(el)

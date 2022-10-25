@@ -71,7 +71,7 @@ def start():
                 continue
         if option == 5:
             print("1. Elimină toate cheltuielile de un anumit tip")
-            print("2. Elimină toate cheltuielile de un anumit tip")
+            print("2. Elimină toate cheltuielile mai mici decât o sumă dată")
             print("3. Inapoi")
             option5 = int(input("Optiunea dumneavoastra este:"))
             if option5 == 1:
