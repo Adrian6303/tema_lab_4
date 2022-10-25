@@ -14,7 +14,7 @@ def populate_list(the_list):
     Populeaza lista data cu niste seriale predefinite
     :param the_list: lista data
     :type the_list: list
-    :return: -; lista data se modifica prin adaugarea serialelor date
+    :return: -; lista data se modifica prin adaugarea cheltuielilor date
     :rtype:
     """
     the_list.append("1-Apa=200")
@@ -112,6 +112,25 @@ def raport_sum_tip(current_list, tipul):
             el_suma = int(el.split("=")[1])
             suma += el_suma
     return suma
+
+
+def filter_tip(current_list, tipul):
+    lista = []
+    for el in current_list:
+        el_tip = str(el.split("-")[1])
+        el_tip = str(el_tip.split("=")[0])
+        if el_tip != tipul:
+            lista.append(el)
+    return lista
+
+
+def filter_suma(current_list, suma):
+    lista = []
+    for el in current_list:
+        el_suma = int(el.split("=")[1])
+        if el_suma >= suma:
+            lista.append(el)
+    return lista
 
 
 def copy_list(lst):

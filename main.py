@@ -75,9 +75,11 @@ def start():
             print("3. Inapoi")
             option5 = int(input("Optiunea dumneavoastra este:"))
             if option5 == 1:
-                print("nu e gata")
+                tip = str(input("Introduceti tipul: "))
+                print("Lista filtrata: ", filter_tip(current_list, tip))
             if option5 == 2:
-                print("nu e gata")
+                suma = int(input("Introduceti suma: "))
+                print("Lista filtrata: ",filter_suma(current_list, suma))
             if option5 == 3:
                 continue
 
