@@ -1,16 +1,20 @@
 def validate_list(elem):
-    if validate_ap(elem) == False:
+    el_ap = int(elem.split(".")[0])
+    el_tip = str(elem.split(".")[1])
+    el_tip = str(el_tip.split("=")[0])
+    el_suma = int(elem.split("=")[1])
+    if validate_ap(el_ap) == False:
         return False
-    if validate_tip(elem) == False:
+    if validate_tip(el_tip) == False:
         return False
-    if validate_suma(elem) == False:
+    if validate_suma(el_suma) == False:
         return False
     return True
 
 
 def validate_ap(el):
-    el_ap = int(el.split(".")[0])
-    if el_ap <= 0:
+    el=int(el)
+    if el <= 0:
         return False
     else:
         return True
@@ -18,11 +22,9 @@ def validate_ap(el):
 
 def validate_tip(el):
     lista_tipuri = ["Apa", "Canal", "Incalzire", "Gaz", "Altele"]
-    el_tip = str(el.split(".")[1])
-    el_tip = str(el_tip.split("=")[0])
     ok = 0
-    for el in lista_tipuri:
-        if el == el_tip:
+    for elem in lista_tipuri:
+        if elem == el:
             ok = 1
             break
     if ok == 0:
@@ -31,8 +33,8 @@ def validate_tip(el):
 
 
 def validate_suma(el):
-    el_suma = int(el.split("=")[1])
-    if el_suma < 0:
+    el=int(el)
+    if el < 0:
         return False
     return True
 
@@ -78,8 +80,12 @@ def edit_list(current_list):
             if el[0:len(el_edit)] == el_edit:
                 ok = 1
                 cheltuiala = str(input("Introduceti suma noua: "))
+                while validate_suma(cheltuiala) == False:
+                    print("Suma invalida!")
+                    cheltuiala = str(input("Introduceti suma noua: "))
                 current_list[cnt] = el_edit + '=' + cheltuiala
                 break
+
             cnt += 1
         if ok == 0:
             print("Nu Exista aceasta cheltuiala! ")
@@ -87,6 +93,9 @@ def edit_list(current_list):
 
 def delete_cheltuieli_ap(current_list):
     n = str(input("Introduce numarul apartamentului: "))
+    while validate_ap(n) == False:
+        print("Apartament invalid!")
+        n = str(input("Introduce numarul apartamentului: "))
     for i in range(len(current_list)):
         for el in current_list:
             if el[0:len(n)] == n:
@@ -96,7 +105,13 @@ def delete_cheltuieli_ap(current_list):
 
 def delete_cheltuieli_consec(current_list):
     nr_start = int(input("Introduce numarul apartamentului de la care se incepe stergerea: "))
+    while validate_ap(nr_start) == False:
+        print("Apartament invalid!")
+        nr_start = int(input("Introduce numarul apartamentului de la care se incepe stergerea: "))
     nr_stop = int(input("Introduce numarul apartamentului pana la care se sterge: "))
+    while validate_ap(nr_stop) == False:
+        print("Apartament invalid!")
+        nr_stop = int(input("Introduce numarul apartamentului pana la care se sterge: "))
     for i in range(len(current_list)):
         for el in current_list:
             el_nr = int(el.split(".")[0])
@@ -107,6 +122,9 @@ def delete_cheltuieli_consec(current_list):
 
 def delete_cheltuieli_tip(current_list):
     tipul = str(input("Introduce tipul cheltuielii: "))
+    while validate_tip(tipul) == False:
+        print("Tipul invalid!")
+        tipul = str(input("Introduce tipul cheltuielii: "))
     for i in range(len(current_list)):
         for el in current_list:
             el_tip = str(el.split(".")[1])

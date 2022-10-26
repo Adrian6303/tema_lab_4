@@ -3,6 +3,11 @@ from functions import *
 
 def debug_auto():
     print("Merge debug")
+    assert validate_list("-1.Apa=200") == False
+    assert validate_list("1.Ceva=100") == False
+    assert validate_list("1.Apa=-200") == False
+    assert validate_list("1.Apa=200") == True
+
     assert tiparire_sume_mai_mari(['1.Apa=200', '1.Gaz=300', '2.Gaz=500', '4.Canal=100', '1.Canal=100', '69.Apa=250'], 400) == [1, 2]
     assert tiparire_sume_mai_mari(['1.Apa=200', '1.Gaz=300', '2.Gaz=500', '4.Canal=100'], 1000) == []
     assert tiparire_sume_mai_mari(['1.Apa=200', '1.Gaz=300', '2.Gaz=500', '4.Canal=100'], 100) == [1, 2, 4]

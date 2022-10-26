@@ -46,10 +46,16 @@ def start():
             option3 = int(input("Optiunea dumneavoastra este:"))
             if option3 == 1:
                 suma = int(input("Introduce suma: "))
+                while validate_suma(suma) == False:
+                    print("Suma invalida!")
+                    suma = int(input("Introduce suma: "))
                 print("Lista apartamente: ", tiparire_sume_mai_mari(current_list, suma))
             if option3 == 2:
-                tip=str(input("Introduceti tipul: "))
-                print("Lista cheltuieli: ",tiparire_cheltuieeli_tip(current_list, tip))
+                tip = str(input("Introduceti tipul: "))
+                while validate_tip(tip) == False:
+                    print("Tipul invalid!")
+                    tip = str(input("Introduceti tipul: "))
+                print("Lista cheltuieli: ", tiparire_cheltuieeli_tip(current_list, tip))
             if option3 == 3:
                 print("nu e gata")
             if option3 == 4:
@@ -62,7 +68,10 @@ def start():
             option4 = int(input("Optiunea dumneavoastra este:"))
             if option4 == 1:
                 tip = str(input("Introduceti tipul: "))
-                print("Suma totala pentru ",tip,": ",raport_sum_tip(current_list, tip))
+                while validate_tip(tip) == False:
+                    print("Tipul invalid!")
+                    tip = str(input("Introduceti tipul: "))
+                print("Suma totala pentru ", tip, ": ", raport_sum_tip(current_list, tip))
             if option4 == 2:
                 print("nu e gata")
             if option4 == 3:
@@ -76,10 +85,16 @@ def start():
             option5 = int(input("Optiunea dumneavoastra este:"))
             if option5 == 1:
                 tip = str(input("Introduceti tipul: "))
+                while validate_tip(tip) == False:
+                    print("Tipul invalid!")
+                    tip = str(input("Introduceti tipul: "))
                 print("Lista filtrata: ", filter_tip(current_list, tip))
             if option5 == 2:
                 suma = int(input("Introduceti suma: "))
-                print("Lista filtrata: ",filter_suma(current_list, suma))
+                while validate_suma(suma) == False:
+                    print("Suma invalida!")
+                    suma = int(input("Introduceti suma: "))
+                print("Lista filtrata: ", filter_suma(current_list, suma))
             if option5 == 3:
                 continue
 
@@ -87,7 +102,7 @@ def start():
             print("nu e gata")
         if option == 7:
             return
-        elif option>7:
+        elif option > 7:
             print("Optiune invalida!")
 
 
