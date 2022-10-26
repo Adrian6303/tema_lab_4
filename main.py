@@ -73,9 +73,17 @@ def start():
                     tip = str(input("Introduceti tipul: "))
                 print("Suma totala pentru ", tip, ": ", raport_sum_tip(current_list, tip))
             if option4 == 2:
-                print("nu e gata")
+                tip = str(input("Introduceti tipul: "))
+                while validate_tip(tip) == False:
+                    print("Tipul invalid!")
+                    tip = str(input("Introduceti tipul: "))
+                print("Apartamentele ce au cheltuieli de tip ", tip, ": ", raport_ap_sort_tip(current_list, tip))
             if option4 == 3:
-                print("nu e gata")
+                ap = str(input("Introduce apartament: "))
+                while validate_ap(ap) == False:
+                    print("Apartament invalid!")
+                    ap = str(input("Introduce apartament: "))
+                print("Totalul cheltuielilor pentru apartamentul", ap, ": ", raport_total_ap(current_list, ap))
             if option4 == 4:
                 continue
         if option == 5:

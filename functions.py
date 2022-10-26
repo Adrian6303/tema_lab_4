@@ -13,7 +13,7 @@ def validate_list(elem):
 
 
 def validate_ap(el):
-    el=int(el)
+    el = int(el)
     if el <= 0:
         return False
     else:
@@ -33,7 +33,7 @@ def validate_tip(el):
 
 
 def validate_suma(el):
-    el=int(el)
+    el = int(el)
     if el < 0:
         return False
     return True
@@ -163,12 +163,33 @@ def tiparire_cheltuieeli_tip(current_list, tipul):
 
 
 def raport_sum_tip(current_list, tipul):
-    lista = []
     suma = 0
     for el in current_list:
         el_tip = str(el.split(".")[1])
         el_tip = str(el_tip.split("=")[0])
         if tipul == el_tip:
+            el_suma = int(el.split("=")[1])
+            suma += el_suma
+    return suma
+
+
+def raport_ap_sort_tip(current_list, tip):
+    lista = []
+    for el in current_list:
+        el_tip = str(el.split(".")[1])
+        el_tip = str(el_tip.split("=")[0])
+        if tip == el_tip:
+            el_ap = int(el.split(".")[0])
+            lista.append(el_ap)
+    lista.sort()
+    return lista
+
+
+def raport_total_ap(current_list, ap):
+    suma = 0
+    for el in current_list:
+        el_ap = str(el.split(".")[0])
+        if ap == el_ap:
             el_suma = int(el.split("=")[1])
             suma += el_suma
     return suma

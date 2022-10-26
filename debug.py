@@ -2,7 +2,7 @@ from functions import *
 
 
 def debug_auto():
-    print("Merge debug")
+
     assert validate_list("-1.Apa=200") == False
     assert validate_list("1.Ceva=100") == False
     assert validate_list("1.Apa=-200") == False
@@ -19,6 +19,14 @@ def debug_auto():
     assert raport_sum_tip(['1.Apa=200', '1.Gaz=300', '2.Gaz=500', '4.Canal=100', '1.Canal=100', '69.Apa=250', '250.Apa=250'],"Apa") == 700
     assert raport_sum_tip(['1.Apa=200', '1.Gaz=300', '2.Gaz=500', '4.Canal=100', '1.Canal=100', '69.Apa=250', '250.Apa=250'], "Gaz") == 800
     assert raport_sum_tip(['1.Apa=200', '1.Gaz=300', '2.Gaz=500', '4.Canal=100', '1.Canal=100', '69.Apa=250', '250.Apa=250'], "Incalzire") == 0
+
+    assert raport_ap_sort_tip(['1.Apa=200', '1.Gaz=300', '2.Gaz=500'], "Gaz") == [1, 2]
+    assert raport_ap_sort_tip(['2.Gaz=500', '4.Canal=100', '1.Canal=100', '69.Apa=250'], "Canal") == [1, 4]
+    assert raport_ap_sort_tip(['2.Gaz=500', '4.Canal=100', '1.Canal=100'], "Apa") == []
+
+    assert raport_total_ap(['1.Apa=200', '1.Gaz=300', '2.Gaz=500', '4.Canal=100', '1.Canal=100'], "1") == 600
+    assert raport_total_ap(['1.Apa=200', '1.Gaz=300', '2.Gaz=500', '4.Canal=100', '1.Canal=100'], "2") == 500
+    assert raport_total_ap(['1.Apa=200', '1.Gaz=300', '2.Gaz=500', '4.Canal=100', '1.Canal=100'], "10") == 0
 
     assert filter_tip(['1.Apa=200', '1.Gaz=300', '2.Gaz=500', '4.Canal=100', '1.Canal=100', '69.Apa=250', '250.Apa=250'], "Apa") == ['1.Gaz=300', '2.Gaz=500', '4.Canal=100', '1.Canal=100']
     assert filter_tip(['1.Gaz=300', '2.Gaz=500', '4.Gaz=100'], "Gaz") == []
