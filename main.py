@@ -6,6 +6,8 @@ from functions import *
 def start():
     current_list = []
     populate_list(current_list)
+    undo_list = []
+    undo_list.append(copy_list(current_list))
     debug_auto()
     while True:
         print_menu()
@@ -17,10 +19,10 @@ def start():
             print("3. Inapoi")
             option1 = int(input("Optiunea dumneavoastra este: "))
             if option1 == 1:
-                read_list(current_list)
+                read_list(current_list, undo_list)
 
             if option1 == 2:
-                edit_list(current_list)
+                edit_list(current_list, undo_list)
             if option1 == 3:
                 continue
 
@@ -31,11 +33,11 @@ def start():
             print("4. Inapoi")
             option2 = int(input("Optiunea dumneavoastra este:"))
             if option2 == 1:
-                delete_cheltuieli_ap(current_list)
+                delete_cheltuieli_ap(current_list, undo_list)
             if option2 == 2:
-                delete_cheltuieli_consec(current_list)
+                delete_cheltuieli_consec(current_list, undo_list)
             if option2 == 3:
-                delete_cheltuieli_tip(current_list)
+                delete_cheltuieli_tip(current_list, undo_list)
             if option2 == 4:
                 continue
         if option == 3:
@@ -107,7 +109,12 @@ def start():
                 continue
 
         if option == 6:
-            print("nu e gata")
+            if len(undo_list) > 1:
+                current_list = undo_step(undo_list)
+                print("Lista a fost modificata!")
+                del undo_list[-1]
+            else:
+                print("Lista cheltuielilor a ajuns la faza initiala!")
         if option == 7:
             return
         elif option > 7:

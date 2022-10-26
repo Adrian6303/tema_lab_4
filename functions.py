@@ -39,20 +39,6 @@ def validate_suma(el):
     return True
 
 
-def read_list(current_list):
-    # Lista sa fie data sub forma: 1.Apa=200, 2.Canal=500, 3.Gaz=700
-    # list_as_string = input("Introduceti lista sub formatul cerut: ")
-    # the_list = list_as_string.split()
-    # return the_list
-    n = int(input("Cate cheltuieli se citesc? "))
-    for i in range(n):
-        cheltuiala = input("Introduceti cheltuiala sub forma NrAp.TipCheltiiala=Suma : ")
-        if validate_list(cheltuiala) == True:
-            current_list.append(cheltuiala)
-        else:
-            print("Cheltuiala Invalida!")
-
-
 def populate_list(the_list):
     """
     Populeaza lista data cu niste seriale predefinite
@@ -70,7 +56,18 @@ def populate_list(the_list):
     the_list.append("250.Apa=250")
 
 
-def edit_list(current_list):
+def read_list(current_list, undo_list):
+    n = int(input("Cate cheltuieli se citesc? "))
+    for i in range(n):
+        cheltuiala = input("Introduceti cheltuiala sub forma NrAp.TipCheltiiala=Suma : ")
+        while validate_list(cheltuiala) == False:
+            print("Cheltuiala invalida!")
+            cheltuiala = input("Introduceti cheltuiala sub forma NrAp.TipCheltiiala=Suma : ")
+        current_list.append(cheltuiala)
+        undo_list.append(copy_list(current_list))
+
+
+def edit_list(current_list, undo_list):
     n = int(input("Cate cheltuieli doresti sa modifici? "))
     for i in range(n):
         el_edit = str(input("Introduce cheltuiala ce trebuie modificata sub forma NrAp.TipCheltuiala : "))
@@ -84,6 +81,7 @@ def edit_list(current_list):
                     print("Suma invalida!")
                     cheltuiala = str(input("Introduceti suma noua: "))
                 current_list[cnt] = el_edit + '=' + cheltuiala
+                undo_list.append(copy_list(current_list))
                 break
 
             cnt += 1
@@ -91,19 +89,21 @@ def edit_list(current_list):
             print("Nu Exista aceasta cheltuiala! ")
 
 
-def delete_cheltuieli_ap(current_list):
-    n = str(input("Introduce numarul apartamentului: "))
+def delete_cheltuieli_ap(current_list, undo_list):
+    n = int(input("Introduce numarul apartamentului: "))
     while validate_ap(n) == False:
         print("Apartament invalid!")
         n = str(input("Introduce numarul apartamentului: "))
     for i in range(len(current_list)):
         for el in current_list:
-            if el[0:len(n)] == n:
+            el_ap = int(el.split(".")[0])
+            if el_ap == n:
                 current_list.remove(el)
                 break
+    undo_list.append(copy_list(current_list))
 
 
-def delete_cheltuieli_consec(current_list):
+def delete_cheltuieli_consec(current_list, undo_list):
     nr_start = int(input("Introduce numarul apartamentului de la care se incepe stergerea: "))
     while validate_ap(nr_start) == False:
         print("Apartament invalid!")
@@ -118,9 +118,10 @@ def delete_cheltuieli_consec(current_list):
             if el_nr >= nr_start and el_nr <= nr_stop:
                 current_list.remove(el)
                 break
+    undo_list.append(copy_list(current_list))
 
 
-def delete_cheltuieli_tip(current_list):
+def delete_cheltuieli_tip(current_list, undo_list):
     tipul = str(input("Introduce tipul cheltuielii: "))
     while validate_tip(tipul) == False:
         print("Tipul invalid!")
@@ -132,6 +133,7 @@ def delete_cheltuieli_tip(current_list):
             if el_tip == tipul:
                 current_list.remove(el)
                 break
+    undo_list.append(copy_list(current_list))
 
 
 def tiparire_sume_mai_mari(current_list, suma):
@@ -219,3 +221,8 @@ def copy_list(lst):
     for elem in lst:
         lst_copy.append(elem)
     return lst_copy
+
+
+def undo_step(undo_list):
+    lista = undo_list[len(undo_list) - 2]
+    return lista
