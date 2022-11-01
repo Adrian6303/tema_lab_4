@@ -110,3 +110,10 @@ def start():
 
 
 start()
+"""
+De facut:
+-de implementat data cheltuielii
+-rapoarte-data
+-documentatie
+
+"""
