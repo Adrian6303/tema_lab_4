@@ -1,29 +1,4 @@
-def validate_ap(el):
-    el = int(el)
-    if el <= 0:
-        return False
-    else:
-        return True
-
-
-def validate_tip(el):
-    lista_tipuri = ["Apa", "Canal", "Incalzire", "Gaz", "Altele"]
-    ok = 0
-    for elem in lista_tipuri:
-        if elem == el:
-            ok = 1
-            break
-    if ok == 0:
-        return False
-    return True
-
-
-def validate_suma(el):
-    el = int(el)
-    if el < 0:
-        return False
-    return True
-
+from utils import *
 
 def populate_list(the_list):
     the_list.append({'ap': 1, 'tip': 'Apa', 'suma': 200})
@@ -200,12 +175,6 @@ def filter_suma(cheltuieli_list, suma):
             lista.append(cheltuieli_list[i])
     return lista
 
-
-def copy_list(lst):
-    lst_copy = []
-    for elem in lst:
-        lst_copy.append(elem)
-    return lst_copy
 
 
 def undo_step(undo_list):
