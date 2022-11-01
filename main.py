@@ -2,6 +2,8 @@ from debug import debug_auto
 from menu import *
 from functions import *
 
+
+
 def start():
     current_list = []
     populate_list(current_list)
