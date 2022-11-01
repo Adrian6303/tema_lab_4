@@ -14,9 +14,7 @@ def start():
         print('Lista cheltuieli bloc: ', cheltuieli_list)
         option = int(input("Optiunea dumneavoastra este: "))
         if option == 1:
-            print("1. Adaugă cheltuială pentru un apartament")
-            print("2. Modifică cheltuială")
-            print("3. Inapoi")
+            print_opt1_menu()
             option1 = int(input("Optiunea dumneavoastra este: "))
             if option1 == 1:
                 read_list(cheltuieli_list, undo_list)
@@ -27,10 +25,7 @@ def start():
                 continue
 
         if option == 2:
-            print("1. Șterge toate cheltuielile de la un apartament")
-            print("2. Șterge cheltuielile de la apartamente consecutive")
-            print("3. Șterge cheltuielile de un anumit tip de la toate apartamentele")
-            print("4. Inapoi")
+            print_opt2_menu()
             option2 = int(input("Optiunea dumneavoastra este:"))
             if option2 == 1:
                 delete_cheltuieli_ap(cheltuieli_list, undo_list)
@@ -41,10 +36,7 @@ def start():
             if option2 == 4:
                 continue
         if option == 3:
-            print("1. Tipărește toate apartamentele care au cheltuieli mai mari decât o sumă dată")
-            print("2. Tipărește cheltuielile de un anumit tip de la toate apartamentele")
-            print("3. Tipărește toate cheltuielile efectuate înainte de o zi și mai mari decât o sumă")
-            print("4. Inapoi")
+            print_opt3_menu()
             option3 = int(input("Optiunea dumneavoastra este:"))
             if option3 == 1:
                 suma = int(input("Introduce suma: "))
@@ -64,10 +56,7 @@ def start():
             if option3 == 4:
                 continue
         if option == 4:
-            print("1. Tipărește suma totală pentru un tip de cheltuială")
-            print("2. Tipărește toate apartamentele sortate după un tip de cheltuială")
-            print("3. Tipărește totalul de cheltuieli pentru un apartament dat")
-            print("4. Inapoi")
+            print_opt4_menu()
             option4 = int(input("Optiunea dumneavoastra este:"))
             if option4 == 1:
                 tip = str(input("Introduceti tipul: "))
@@ -90,9 +79,7 @@ def start():
             if option4 == 4:
                 continue
         if option == 5:
-            print("1. Elimină toate cheltuielile de un anumit tip")
-            print("2. Elimină toate cheltuielile mai mici decât o sumă dată")
-            print("3. Inapoi")
+            print_opt5_menu()
             option5 = int(input("Optiunea dumneavoastra este:"))
             if option5 == 1:
                 tip = str(input("Introduceti tipul: "))
