@@ -3,11 +3,13 @@ from functions import *
 
 def debug_auto():
 
-    assert validate_list("-1.Apa=200") == False
-    assert validate_list("1.Ceva=100") == False
-    assert validate_list("1.Apa=-200") == False
-    assert validate_list("1.Apa=200") == True
-
+    assert validate_ap(-1) == False
+    assert validate_ap(1) == True
+    assert validate_tip('Ceva') == False
+    assert validate_tip('Apa') == True
+    assert validate_suma(-200) == False
+    assert validate_suma(200) == True
+    """
     assert tiparire_sume_mai_mari(['1.Apa=200', '1.Gaz=300', '2.Gaz=500', '4.Canal=100', '1.Canal=100', '69.Apa=250'], 400) == [1, 2]
     assert tiparire_sume_mai_mari(['1.Apa=200', '1.Gaz=300', '2.Gaz=500', '4.Canal=100'], 1000) == []
     assert tiparire_sume_mai_mari(['1.Apa=200', '1.Gaz=300', '2.Gaz=500', '4.Canal=100'], 100) == [1, 2, 4]
@@ -35,3 +37,4 @@ def debug_auto():
     assert filter_suma(['1.Apa=200', '1.Gaz=300', '2.Gaz=500', '4.Canal=100', '1.Canal=100', '69.Apa=250'],300) == ['1.Gaz=300', '2.Gaz=500']
     assert filter_suma(['1.Apa=200', '2.Gaz=500', '4.Canal=100', '69.Apa=250'], 100) == ['1.Apa=200', '2.Gaz=500', '4.Canal=100', '69.Apa=250']
     assert filter_suma(['1.Apa=200', '2.Gaz=500', '4.Canal=100', '69.Apa=250'], 600) == []
+    """
