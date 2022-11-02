@@ -149,7 +149,7 @@ De facut:
 -de implementat data cheltuielii done
 -rapoarte-data done
 -validare optiuni  done
--teste
+-teste done
 -documentatie
 
 """

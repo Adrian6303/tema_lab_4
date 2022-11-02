@@ -153,8 +153,6 @@ def tiparire_cheltuieli_zi(cheltuieli_list, ziua, suma):
     ziua = int(ziua)
     suma = int(suma)
     for i in range(len(cheltuieli_list)):
-        print(cheltuieli_list[i]['ziua'])
-        print(cheltuieli_list[i]['suma'])
         if ziua > cheltuieli_list[i]['ziua'] and suma < cheltuieli_list[i]['suma']:
             ap = str(cheltuieli_list[i]['ap'])
             suma_el = str(cheltuieli_list[i]['suma'])
