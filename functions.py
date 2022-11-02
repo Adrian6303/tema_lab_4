@@ -1,17 +1,18 @@
 from utils import *
 
+
 def populate_list(the_list):
-    the_list.append({'ap': 1, 'tip': 'Apa', 'suma': 200})
-    the_list.append({'ap': 1, 'tip': 'Gaz', 'suma': 300})
-    the_list.append({'ap': 2, 'tip': 'Gaz', 'suma': 500})
-    the_list.append({'ap': 4, 'tip': 'Canal', 'suma': 100})
-    the_list.append({'ap': 69, 'tip': 'Altele', 'suma': 250})
+    the_list.append({'ap': 1, 'tip': 'Apa', 'suma': 200, 'ziua': 5})
+    the_list.append({'ap': 1, 'tip': 'Gaz', 'suma': 300, 'ziua': 22})
+    the_list.append({'ap': 2, 'tip': 'Gaz', 'suma': 500, 'ziua': 15})
+    the_list.append({'ap': 4, 'tip': 'Canal', 'suma': 100, 'ziua': 10})
+    the_list.append({'ap': 69, 'tip': 'Altele', 'suma': 250, 'ziua': 17})
 
 
 def read_list(current_list, undo_list):
     n = int(input("Cate cheltuieli se citesc? "))
     for i in range(n):
-        current_list.append({'ap': None, 'tip': None, 'suma': None})
+        current_list.append({'ap': None, 'tip': None, 'suma': None, 'ziua': None})
 
         ap = input("Introduceti Apartamentul: ")
         while validate_ap(ap) == False:
@@ -31,6 +32,12 @@ def read_list(current_list, undo_list):
             suma = input("Introduceti Suma: ")
         current_list[len(current_list) - 1]['suma'] = suma
 
+        ziua = input("Introduceti Ziua: ")
+        while validate_ziua(ziua) == False:
+            print("Zi invalida!")
+            ziua = input("Introduceti Ziua: ")
+        current_list[len(current_list) - 1]['ziua'] = ziua
+
         undo_list.append(copy_list(current_list))
 
 
@@ -41,17 +48,24 @@ def edit_list(cheltuieli_list, undo_list):
         while validate_ap(ap) == False:
             print("Apartament invalid!")
             ap = input("Introduceti Apartamentul: ")
-        ap=int(ap)
+        ap = int(ap)
+
         tip = input("Introduceti Tipul: ")
         while validate_tip(tip) == False:
             print("Tip invalid!")
             tip = input("Introduceti Tipul: ")
-        tip=str(tip)
+        tip = str(tip)
+
+        ziua = int(input("Introduceti Ziua: "))
+        while validate_ziua(ziua) == False:
+            print("Zi invalida!")
+            ziua = int(input("Introduceti Ziua: "))
+
         ok = 0  # verifica existenta cheltuielii
         for i in range(len(cheltuieli_list)):
-            print(cheltuieli_list[i]['ap'])
-            print(cheltuieli_list[i]['tip'])
-            if cheltuieli_list[i]['ap'] == ap and cheltuieli_list[i]['tip'] == tip:
+
+            if cheltuieli_list[i]['ap'] == ap and cheltuieli_list[i]['tip'] == tip and cheltuieli_list[i][
+                'ziua'] == ziua:
                 ok = 1
                 suma = input("Introduceti suma noua: ")
                 while validate_suma(suma) == False:
@@ -59,7 +73,6 @@ def edit_list(cheltuieli_list, undo_list):
                     suma = input("Introduceti suma noua: ")
                 cheltuieli_list[i]['suma'] = suma
                 undo_list.append(copy_list(cheltuieli_list))
-                break
 
         if ok == 0:
             print("Nu Exista aceasta cheltuiala! ")
@@ -128,9 +141,24 @@ def tiparire_cheltuieeli_tip(cheltuieli_list, tipul):
     lista = []
     for i in range(len(cheltuieli_list)):
         if tipul == cheltuieli_list[i]['tip']:
-            ap=str(cheltuieli_list[i]['ap'] )
-            suma=str(cheltuieli_list[i]['suma'] )
+            ap = str(cheltuieli_list[i]['ap'])
+            suma = str(cheltuieli_list[i]['suma'])
             el_cheltuiala = "Apartamentul " + ap + " suma " + suma
+            lista.append(el_cheltuiala)
+    return lista
+
+
+def tiparire_cheltuieli_zi(cheltuieli_list, ziua, suma):
+    lista = []
+    ziua = int(ziua)
+    suma = int(suma)
+    for i in range(len(cheltuieli_list)):
+        print(cheltuieli_list[i]['ziua'])
+        print(cheltuieli_list[i]['suma'])
+        if ziua > cheltuieli_list[i]['ziua'] and suma < cheltuieli_list[i]['suma']:
+            ap = str(cheltuieli_list[i]['ap'])
+            suma_el = str(cheltuieli_list[i]['suma'])
+            el_cheltuiala = "Apartamentul " + ap + " suma " + suma_el
             lista.append(el_cheltuiala)
     return lista
 
@@ -174,7 +202,6 @@ def filter_suma(cheltuieli_list, suma):
         if cheltuieli_list[i]['suma'] >= suma:
             lista.append(cheltuieli_list[i])
     return lista
-
 
 
 def undo_step(undo_list):

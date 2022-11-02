@@ -4,7 +4,7 @@ from functions import *
 
 
 def start():
-    cheltuieli_list=[]
+    cheltuieli_list = []
     populate_list(cheltuieli_list)
     undo_list = []
     undo_list.append(copy_list(cheltuieli_list))
@@ -12,10 +12,18 @@ def start():
     while True:
         print_menu()
         print('Lista cheltuieli bloc: ', cheltuieli_list)
-        option = int(input("Optiunea dumneavoastra este: "))
+        option = input("Optiunea dumneavoastra este: ")
+        while validate_option(option) == False:
+            print("Optiune invalida!")
+            option = input("Optiunea dumneavoastra este: ")
+        option = int(option)
         if option == 1:
             print_opt1_menu()
-            option1 = int(input("Optiunea dumneavoastra este: "))
+            option1 = input("Optiunea dumneavoastra este: ")
+            while validate_option(option1) == False:
+                print("Optiune invalida!")
+                option1 = input("Optiunea dumneavoastra este: ")
+            option1 = int(option1)
             if option1 == 1:
                 read_list(cheltuieli_list, undo_list)
 
@@ -26,7 +34,11 @@ def start():
 
         if option == 2:
             print_opt2_menu()
-            option2 = int(input("Optiunea dumneavoastra este:"))
+            option2 = input("Optiunea dumneavoastra este:")
+            while validate_option(option2) == False:
+                print("Optiune invalida!")
+                option2 = input("Optiunea dumneavoastra este: ")
+            option2 = int(option2)
             if option2 == 1:
                 delete_cheltuieli_ap(cheltuieli_list, undo_list)
             if option2 == 2:
@@ -37,7 +49,11 @@ def start():
                 continue
         if option == 3:
             print_opt3_menu()
-            option3 = int(input("Optiunea dumneavoastra este:"))
+            option3 = input("Optiunea dumneavoastra este: ")
+            while validate_option(option3) == False:
+                print("Optiune invalida!")
+                option3 = input("Optiunea dumneavoastra este: ")
+            option3 = int(option3)
             if option3 == 1:
                 suma = int(input("Introduce suma: "))
                 while validate_suma(suma) == False:
@@ -52,12 +68,26 @@ def start():
                     tip = str(input("Introduceti tipul: "))
                 print("Lista cheltuieli: ", tiparire_cheltuieeli_tip(cheltuieli_list, tip))
             if option3 == 3:
-                print("nu e gata")
+                ziua = int(input("Introduce ziua: "))
+                while validate_ziua(ziua) == False:
+                    print("Zi invalida!")
+                    ziua = int(input("Introduce ziua: "))
+
+                suma = int(input("Introduce suma: "))
+                while validate_suma(suma) == False:
+                    print("Suma invalida!")
+                    suma = int(input("Introduce suma: "))
+                print("Lista cheltuieli: ", tiparire_cheltuieli_zi(cheltuieli_list, ziua, suma))
+
             if option3 == 4:
                 continue
         if option == 4:
             print_opt4_menu()
-            option4 = int(input("Optiunea dumneavoastra este:"))
+            option4 = input("Optiunea dumneavoastra este:")
+            while validate_option(option4) == False:
+                print("Optiune invalida!")
+                option4 = input("Optiunea dumneavoastra este: ")
+            option4 = int(option4)
             if option4 == 1:
                 tip = str(input("Introduceti tipul: "))
                 while validate_tip(tip) == False:
@@ -80,7 +110,11 @@ def start():
                 continue
         if option == 5:
             print_opt5_menu()
-            option5 = int(input("Optiunea dumneavoastra este:"))
+            option5 = input("Optiunea dumneavoastra este:")
+            while validate_option(option5) == False:
+                print("Optiune invalida!")
+                option5 = input("Optiunea dumneavoastra este: ")
+            option5 = int(option5)
             if option5 == 1:
                 tip = str(input("Introduceti tipul: "))
                 while validate_tip(tip) == False:
@@ -112,8 +146,10 @@ def start():
 start()
 """
 De facut:
--de implementat data cheltuielii
--rapoarte-data
+-de implementat data cheltuielii done
+-rapoarte-data done
+-validare optiuni  done
+-teste
 -documentatie
 
 """

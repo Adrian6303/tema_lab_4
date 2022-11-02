@@ -6,6 +6,11 @@ def validate_ap(el):
         return True
 
 
+def validate_option(el):
+    x = el.isnumeric()
+    return x
+
+
 def validate_tip(el):
     lista_tipuri = ["Apa", "Canal", "Incalzire", "Gaz", "Altele"]
     ok = 0
@@ -21,6 +26,13 @@ def validate_tip(el):
 def validate_suma(el):
     el = int(el)
     if el < 0:
+        return False
+    return True
+
+
+def validate_ziua(el):
+    el = int(el)
+    if el < 1 or el > 31:
         return False
     return True
 
