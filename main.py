@@ -144,12 +144,3 @@ def start():
 
 
 start()
-"""
-De facut:
--de implementat data cheltuielii done
--rapoarte-data done
--validare optiuni  done
--teste done
--documentatie
-
-"""
