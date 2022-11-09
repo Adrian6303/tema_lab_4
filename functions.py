@@ -203,5 +203,6 @@ def filter_suma(cheltuieli_list, suma):
 
 
 def undo_step(undo_list):
-    lista = undo_list[len(undo_list) - 2]
+    undo_list = undo_list[:-1]
+    lista = undo_list[-1]
     return lista

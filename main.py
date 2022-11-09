@@ -13,9 +13,11 @@ def start():
         print_menu()
         print('Lista cheltuieli bloc: ', cheltuieli_list)
         option = input("Optiunea dumneavoastra este: ")
+        #"""
         while validate_option(option) == False:
             print("Optiune invalida!")
             option = input("Optiunea dumneavoastra este: ")
+        #"""
         option = int(option)
         if option == 1:
             print_opt1_menu()
@@ -137,6 +139,7 @@ def start():
                 del undo_list[-1]
             else:
                 print("Lista cheltuielilor a ajuns la faza initiala!")
+
         if option == 7:
             return
         elif option > 7:
@@ -144,3 +147,10 @@ def start():
 
 
 start()
+
+"""
+DE facut 
+-5 actiunii penru primele categorii (o adaugare, o sergere,....)
+-undo morti lui
+
+"""

@@ -1,4 +1,4 @@
-# tema_lab_4
+# tema_lab_4-6
 P5. Administrator de bloc Creați o aplicație pentru gestiunea cheltuielilor lunare de la apartamentele unui bloc de locuințe.
 Aplicația stochează cheltuielile pentru fiecare apartament: suma și tipul cheltuielii (tip poate fi una dintre: apa, canal, încălzire, gaz, altele).
 Aplicația permite:
