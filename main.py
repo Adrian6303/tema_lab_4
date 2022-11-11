@@ -13,13 +13,14 @@ def start():
         print_menu()
         print('Lista cheltuieli bloc: ', cheltuieli_list)
         option = input("Optiunea dumneavoastra este: ")
-        #"""
+        """
         while validate_option(option) == False:
             print("Optiune invalida!")
             option = input("Optiunea dumneavoastra este: ")
-        #"""
+        
         option = int(option)
-        if option == 1:
+        """
+        if option == '1':
             print_opt1_menu()
             option1 = input("Optiunea dumneavoastra este: ")
             while validate_option(option1) == False:
@@ -34,7 +35,7 @@ def start():
             if option1 == 3:
                 continue
 
-        if option == 2:
+        elif option == '2':
             print_opt2_menu()
             option2 = input("Optiunea dumneavoastra este:")
             while validate_option(option2) == False:
@@ -49,7 +50,7 @@ def start():
                 delete_cheltuieli_tip(cheltuieli_list, undo_list)
             if option2 == 4:
                 continue
-        if option == 3:
+        elif option == '3':
             print_opt3_menu()
             option3 = input("Optiunea dumneavoastra este: ")
             while validate_option(option3) == False:
@@ -83,7 +84,7 @@ def start():
 
             if option3 == 4:
                 continue
-        if option == 4:
+        elif option == '4':
             print_opt4_menu()
             option4 = input("Optiunea dumneavoastra este:")
             while validate_option(option4) == False:
@@ -110,7 +111,7 @@ def start():
                 print("Totalul cheltuielilor pentru apartamentul", ap, ": ", raport_total_ap(cheltuieli_list, ap))
             if option4 == 4:
                 continue
-        if option == 5:
+        elif option == '5':
             print_opt5_menu()
             option5 = input("Optiunea dumneavoastra este:")
             while validate_option(option5) == False:
@@ -132,7 +133,7 @@ def start():
             if option5 == 3:
                 continue
 
-        if option == 6:
+        elif option == '6':
             if len(undo_list) > 1:
                 cheltuieli_list = undo_step(undo_list)
                 print("Lista a fost modificata!")
@@ -140,17 +141,14 @@ def start():
             else:
                 print("Lista cheltuielilor a ajuns la faza initiala!")
 
-        if option == 7:
+        elif option == '7':
             return
-        elif option > 7:
+        else:
             print("Optiune invalida!")
 
 
 start()
 
-"""
-DE facut 
--5 actiunii penru primele categorii (o adaugare, o sergere,....)
--undo morti lui
 
-"""
+#TODO: 5 actiunii penru primele categorii (o adaugare, o sergere,....)
+#TODO: undo morti lui
