@@ -144,11 +144,33 @@ def start():
         elif option == '7':
             return
         else:
-            print("Optiune invalida!")
+            actiune = option.split(" ")[0]
+            if actiune.lower() == "adauga":
+                data = option.split(" ")[1]
+                ac_adauga(data,cheltuieli_list,undo_list)
+            elif actiune.lower() == "sterge":
+                data = option.split(" ")[1]
+                ac_sterge(data,cheltuieli_list,undo_list)
+            elif actiune.lower() == "cauta":
+                suma = int(option.split(" ")[1])
+                while validate_suma(suma) == False:
+                    print("Suma invalida!")
+                    suma = int(input("Introduce suma: "))
+                print("Lista apartamente: ", tiparire_sume_mai_mari(cheltuieli_list, suma))
+            elif actiune.lower() == "raport":
+                tip = str(option.split(" ")[1])
+                while validate_tip(tip) == False:
+                    print("Tipul invalid!")
+                    tip = str(input("Introduceti tipul: "))
+                print("Suma totala pentru ", tip, ": ", raport_sum_tip(cheltuieli_list, tip))
+            elif actiune.lower() == "filtru":
+                tip = str(option.split(" ")[1])
+                while validate_tip(tip) == False:
+                    print("Tipul invalid!")
+                    tip = str(input("Introduceti tipul: "))
+                print("Lista filtrata: ", filter_tip(cheltuieli_list, tip))
+            else:
+                print("Optiune invalida!")
 
 
 start()
-
-
-#TODO: 5 actiunii penru primele categorii (o adaugare, o sergere,....)
-#TODO: undo morti lui

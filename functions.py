@@ -206,3 +206,37 @@ def undo_step(undo_list):
     undo_list = undo_list[:-1]
     lista = undo_list[-1]
     return lista
+
+
+def ac_adauga(data, cheltuieli_list, undo_list):  # formatul cheltuielii 1.Apa=200:12
+    cheltuieli_list.append({'ap': None, 'tip': None, 'suma': None, 'ziua': None})
+
+    ap = data.split(".")[0]
+    data = data.split(".")[1]
+    cheltuieli_list[len(cheltuieli_list) - 1]['ap'] = ap
+
+    tip = data.split("=")[0]
+    data = data.split("=")[1]
+    cheltuieli_list[len(cheltuieli_list) - 1]['tip'] = tip
+
+    suma = data.split(":")[0]
+    cheltuieli_list[len(cheltuieli_list) - 1]['suma'] = suma
+
+    ziua = data.split(":")[1]
+    cheltuieli_list[len(cheltuieli_list) - 1]['ziua'] = ziua
+
+    undo_list.append(copy_list(cheltuieli_list))
+
+
+def ac_sterge(data, cheltuieli_list, undo_list): #format data ap1
+    ap = int(data.split("ap")[1])
+    while validate_ap(ap) == False:
+        print("Apartament invalid!")
+        ap = int(input("Introduce numarul apartamentului: "))
+    for j in range(len(cheltuieli_list)):
+        for i in range(len(cheltuieli_list)):
+            if cheltuieli_list[i]['ap'] == ap:
+                cheltuieli_list.pop(i)
+                break
+    undo_list.append(copy_list(cheltuieli_list))
+
