@@ -240,3 +240,4 @@ def ac_sterge(data, cheltuieli_list, undo_list): #format data ap1
                 break
     undo_list.append(copy_list(cheltuieli_list))
 
+# Model:   sterge ap2,cauta 200,raport Apa,filtru Gaz,adauga 5.Apa=200:12

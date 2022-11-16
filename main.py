@@ -144,33 +144,39 @@ def start():
         elif option == '7':
             return
         else:
-            actiune = option.split(" ")[0]
-            if actiune.lower() == "adauga":
-                data = option.split(" ")[1]
-                ac_adauga(data,cheltuieli_list,undo_list)
-            elif actiune.lower() == "sterge":
-                data = option.split(" ")[1]
-                ac_sterge(data,cheltuieli_list,undo_list)
-            elif actiune.lower() == "cauta":
-                suma = int(option.split(" ")[1])
-                while validate_suma(suma) == False:
-                    print("Suma invalida!")
-                    suma = int(input("Introduce suma: "))
-                print("Lista apartamente: ", tiparire_sume_mai_mari(cheltuieli_list, suma))
-            elif actiune.lower() == "raport":
-                tip = str(option.split(" ")[1])
-                while validate_tip(tip) == False:
-                    print("Tipul invalid!")
-                    tip = str(input("Introduceti tipul: "))
-                print("Suma totala pentru ", tip, ": ", raport_sum_tip(cheltuieli_list, tip))
-            elif actiune.lower() == "filtru":
-                tip = str(option.split(" ")[1])
-                while validate_tip(tip) == False:
-                    print("Tipul invalid!")
-                    tip = str(input("Introduceti tipul: "))
-                print("Lista filtrata: ", filter_tip(cheltuieli_list, tip))
-            else:
-                print("Optiune invalida!")
+            i=0
+            comanda = option.split(",")
+            while i<len(comanda):
+                actiune = comanda[i]
+                actiune=actiune.split(" ")
+                if actiune[0].lower() == "adauga":
+                    data = actiune[1]
+                    ac_adauga(data,cheltuieli_list,undo_list)
+                elif actiune[0].lower() == "sterge":
+                    data = actiune[1]
+                    ac_sterge(data,cheltuieli_list,undo_list)
+                elif actiune[0].lower() == "cauta":
+                    suma = int(actiune[1])
+                    while validate_suma(suma) == False:
+                        print("Suma invalida!")
+                        suma = int(input("Introduce suma: "))
+                    print("Lista apartamente: ", tiparire_sume_mai_mari(cheltuieli_list, suma))
+                elif actiune[0].lower() == "raport":
+                    tip = str(actiune[1])
+                    while validate_tip(tip) == False:
+                        print("Tipul invalid!")
+                        tip = str(input("Introduceti tipul: "))
+                    print("Suma totala pentru ", tip, ": ", raport_sum_tip(cheltuieli_list, tip))
+                elif actiune[0].lower() == "filtru":
+                    tip = str(actiune[1])
+                    while validate_tip(tip) == False:
+                        print("Tipul invalid!")
+                        tip = str(input("Introduceti tipul: "))
+                    print("Lista filtrata: ", filter_tip(cheltuieli_list, tip))
+                else:
+                    print("Optiune invalida!")
+                i+=1
+
 
 
 start()
